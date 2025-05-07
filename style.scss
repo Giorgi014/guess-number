@@ -27,6 +27,7 @@ body {
 .main_container {
   width: 100vw;
   height: 100vh;
+  // overflow: hidden;
   header {
     @include displaycenter(space-between, center);
     width: 100%;
