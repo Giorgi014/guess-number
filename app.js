@@ -1,56 +1,58 @@
 const MAIN_CONTAINER = document.querySelector(".main_container");
 const AGAIN_BUTTON = document.getElementById("again");
-const CORRECT_NUMBER = document.getElementsByClassName("number");
+const CORRECT_NUMBER = document.getElementById("number");
 const INPUT_ANSWER = document.getElementById("check_number");
 const CHECK_NUMBER_BUTTON = document.getElementById("check_number_btn");
-const GUESS_MESSAGE = document.getElementsByClassName("start_guessing");
-const SCORE_NUMBER = document.getElementsByClassName("score_number");
-const HIGHT_SCORE_NUMBER =
-  document.getElementsByClassName("hight_score_number");
+const GUESS_MESSAGE = document.getElementById("start_guessing");
+const SCORE_NUMBER = document.getElementById("score_number");
+const HIGHT_SCORE_NUMBER = document.getElementById("hight_score_number");
 
-const RANDOM_NUMBER = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-];
+// const RANDOM_NUMBER = [
+//   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+// ];
 
 let TOTAL_SCORE = 20;
 let HIGHT_SCORE = 0;
+const MAX_NUMBER = 20;
 
-SCORE_NUMBER[0].textContent = TOTAL_SCORE;
-HIGHT_SCORE_NUMBER[0].textContent = HIGHT_SCORE;
+SCORE_NUMBER.textContent = TOTAL_SCORE;
+HIGHT_SCORE_NUMBER.textContent = HIGHT_SCORE;
 
-const randomIndex = Math.floor(Math.random() * RANDOM_NUMBER.length);
-let secretNumber = RANDOM_NUMBER[randomIndex - 1];
+let secretNumber = Math.floor(Math.random() * MAX_NUMBER) + 1;
+// let secretNumber = RANDOM_NUMBER[randomIndex - 1];
 console.log(secretNumber);
 
 CHECK_NUMBER_BUTTON.addEventListener("click", () => {
   const guess = Number(INPUT_ANSWER.value);
 
-  if (guess === randomIndex) {
+  if (guess === secretNumber) {
     MAIN_CONTAINER.style.backgroundColor = "green";
-    GUESS_MESSAGE[0].textContent = "🎉 Correct Number!";
-    CORRECT_NUMBER[0].textContent = secretNumber;
+    GUESS_MESSAGE.textContent = "🎉 Correct Number!";
+    CORRECT_NUMBER.textContent = secretNumber;
     if (TOTAL_SCORE > HIGHT_SCORE) {
       HIGHT_SCORE = TOTAL_SCORE;
-      HIGHT_SCORE_NUMBER[0].textContent = HIGHT_SCORE;
+      HIGHT_SCORE_NUMBER.textContent = HIGHT_SCORE;
     }
   } else {
-    if (SCORE_NUMBER[0].textContent > 1) {
+    if (TOTAL_SCORE > 1) {
       TOTAL_SCORE--;
-      SCORE_NUMBER[0].textContent = TOTAL_SCORE;
-      GUESS_MESSAGE[0].textContent =
+      SCORE_NUMBER.textContent = TOTAL_SCORE;
+      GUESS_MESSAGE.textContent =
         guess > secretNumber ? "📈 Too high!" : "📉 Too low!";
     } else {
       MAIN_CONTAINER.style.backgroundColor = "red";
-      GUESS_MESSAGE[0].textContent = "💥 You lost the game!";
-      SCORE_NUMBER[0].textContent = 0;
+      GUESS_MESSAGE.textContent = "💥 You lost the game!";
+      SCORE_NUMBER.textContent = 0;
     }
   }
 });
 
 AGAIN_BUTTON.addEventListener("click", () => {
   TOTAL_SCORE = 20;
-  SCORE_NUMBER[0].textContent = TOTAL_SCORE;
+  SCORE_NUMBER.textContent = TOTAL_SCORE;
   MAIN_CONTAINER.style.backgroundColor = "";
-  CORRECT_NUMBER[0].textContent = "?";
+  CORRECT_NUMBER.textContent = "?";
   INPUT_ANSWER.value = "";
+  secretNumber = Math.floor(Math.random() * MAX_NUMBER) + 1;
+  console.log(secretNumber);
 });
