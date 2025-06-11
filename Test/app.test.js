@@ -54,11 +54,9 @@ test("should initialize score to 20", () => {
 
 test("should decrease score on wrong guess", () => {
   initGame();
-  const INPUT_ANSWER = document.getElementById("check_number");
   const CHECK_NUMBER_BUTTON = document.getElementById("check_number_btn");
   const SCORE_NUMBER = document.getElementById("score_number");
 
-  INPUT_ANSWER.value = "0";
   CHECK_NUMBER_BUTTON.click();
 
   expect(Number(SCORE_NUMBER.textContent)).toBe(19);
