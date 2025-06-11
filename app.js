@@ -62,10 +62,5 @@ const initGame = () => {
 // initGame();
 
 module.exports = {
-  initGame,
-  // TOTAL_SCORE,
-  // HIGHT_SCORE,
-  // MAX_NUMBER,
-  // CHECK_NUMBER_BUTTON,
-  // AGAIN_BUTTON,
+  initGame
 };
