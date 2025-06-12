@@ -59,8 +59,10 @@ const initGame = () => {
   });
 };
 
-// initGame();
-
-module.exports = {
-  initGame
-};
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    initGame
+  };
+} else {
+  initGame();
+}
